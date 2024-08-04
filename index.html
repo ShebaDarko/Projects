@@ -7,16 +7,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             background-color: #f4f4f4;
             color: #333;
-            margin: 0;
-            padding: 20px;
         }
         header {
             text-align: center;
             padding: 20px 0;
             background-color: #276221;
             color: #fff;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
         }
         .repo {
             background-color: #fff;
@@ -36,9 +43,6 @@
             padding: 10px 0;
             background-color: #276221;
             color: #fff;
-            position: absolute;
-            width: 100%;
-            bottom: 0;
         }
     </style>
 </head>
@@ -47,7 +51,7 @@
         <h1>My GitHub Repositories</h1>
     </header>
     
-    <div id="repos"></div>
+    <div class="container" id="repos"></div>
     
     <footer>
         <p>© 2024 Bathsheba Darko. All rights reserved.</p>
