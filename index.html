@@ -9,40 +9,36 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
             background-color: #f4f4f4;
-            color: #333;
+            line-height: 1.6;
         }
         header {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #276221;
+            background-color: #003366;
             color: #fff;
+            padding: 20px 0;
+            text-align: center;
         }
         .container {
-            flex: 1;
+            width: 80%;
+            margin: auto;
             padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
         }
         .repo {
             background-color: #fff;
-            border-radius: 5px;
+            padding: 15px;
             margin: 10px 0;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .repo h3 {
-            margin: 0;
-        }
-        .repo p {
-            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         footer {
+            background-color: #003366;
+            color: #fff;
             text-align: center;
             padding: 10px 0;
-            background-color: #276221;
-            color: #fff;
+            position: relative;
         }
     </style>
 </head>
@@ -51,31 +47,27 @@
         <h1>My GitHub Repositories</h1>
     </header>
     
-    <div class="container" id="repos"></div>
+    <div class="container">
+        <div class="repo">
+            <h2><a href="https://github.com/ShebaDarko/MACHINE-LEARNING-FOR-INTRUSION-DETECTION-" target="_blank">MACHINE-LEARNING-FOR-INTRUSION-DETECTION-</a></h2>
+            <p>This repository contains projects related to machine learning models for intrusion detection. It includes code and data for various algorithms and approaches used to identify and classify network intrusions.</p>
+        </div>
+        <div class="repo">
+            <h2><a href="https://github.com/ShebaDarko/PowerBI-IntrusionDetection-Analytics-Dashboard" target="_blank">PowerBI-IntrusionDetection-Analytics-Dashboard</a></h2>
+            <p>This project showcases the analysis of intrusion detection using Power BI. It includes visualizations and key insights derived from the data, providing a clear overview of the model performance and dataset distributions.</p>
+        </div>
+        <div class="repo">
+            <h2><a href="https://github.com/ShebaDarko/Multivariate-Gaussian-Data-Analysis-Visualizat" target="_blank">Multivariate-Gaussian-Data-Analysis-Visualizat</a></h2>
+            <p>This repository focuses on the analysis and visualization of multivariate Gaussian data. It includes techniques and methods to detect anomalies and patterns within the dataset.</p>
+        </div>
+        <div class="repo">
+            <h2><a href="https://github.com/ShebaDarko/Detection-in-Multivariate-Gaussian-Data--Datascience" target="_blank">Detection-in-Multivariate-Gaussian-Data--Datascience</a></h2>
+            <p>This project involves detecting anomalies in multivariate Gaussian data using various statistical and machine learning techniques. It provides detailed analysis and visualizations of the data.</p>
+        </div>
+    </div>
     
     <footer>
         <p>© 2024 Bathsheba Darko. All rights reserved.</p>
     </footer>
-    
-    <script>
-        const username = 'ShebaDarko'; // Replace with your GitHub username
-
-        fetch(`https://api.github.com/users/${username}/repos`)
-            .then(response => response.json())
-            .then(repos => {
-                const repoContainer = document.getElementById('repos');
-                repos.forEach(repo => {
-                    const repoDiv = document.createElement('div');
-                    repoDiv.className = 'repo';
-                    repoDiv.innerHTML = `
-                        <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-                        <p>${repo.description ? repo.description : 'No description available'}</p>
-                        <p><strong>Stars:</strong> ${repo.stargazers_count} | <strong>Forks:</strong> ${repo.forks_count}</p>
-                    `;
-                    repoContainer.appendChild(repoDiv);
-                });
-            })
-            .catch(error => console.error('Error fetching repositories:', error));
-    </script>
 </body>
 </html>
