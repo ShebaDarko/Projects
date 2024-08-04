@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My GitHub Repositories</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #276221;
+            color: #fff;
+        }
+        .repo {
+            background-color: #fff;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .repo h3 {
+            margin: 0;
+        }
+        .repo p {
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #276221;
+            color: #fff;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My GitHub Repositories</h1>
+    </header>
+    
+    <div id="repos"></div>
+    
+    <footer>
+        <p>© 2024 Bathsheba Darko. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        const username = 'ShebaDarko'; // Replace with your GitHub username
+
+        fetch(`https://api.github.com/users/${username}/repos`)
+            .then(response => response.json())
+            .then(repos => {
+                const repoContainer = document.getElementById('repos');
+                repos.forEach(repo => {
+                    const repoDiv = document.createElement('div');
+                    repoDiv.className = 'repo';
+                    repoDiv.innerHTML = `
+                        <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                        <p>${repo.description ? repo.description : 'No description available'}</p>
+                        <p><strong>Stars:</strong> ${repo.stargazers_count} | <strong>Forks:</strong> ${repo.forks_count}</p>
+                    `;
+                    repoContainer.appendChild(repoDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching repositories:', error));
+    </script>
+</body>
+</html>
