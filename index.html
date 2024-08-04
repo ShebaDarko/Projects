@@ -18,7 +18,7 @@
         header {
             text-align: center;
             padding: 20px 0;
-            background-color: #003366;
+            background-color: #276221;
             color: #fff;
         }
         .container {
@@ -41,7 +41,7 @@
         footer {
             text-align: center;
             padding: 10px 0;
-            background-color: #003366;
+            background-color: #276221;
             color: #fff;
         }
     </style>
@@ -62,25 +62,30 @@
         const specificRepos = [
             'MACHINE-LEARNING-FOR-INTRUSION-DETECTION-',
             'PowerBI-IntrusionDetection-Analytics-Dashboard',
-            'Multivariate-Gaussian-Data-Analysis-Visualizat-Detection-in-Multivariate-Gaussian-Data--Datascience',
+            'Multivariate-Gaussian-Data-Analysis-Visualizat',
+            'Detection-in-Multivariate-Gaussian-Data--Datascience'
         ];
 
         fetch(`https://api.github.com/users/${username}/repos`)
             .then(response => response.json())
             .then(repos => {
                 const repoContainer = document.getElementById('repos');
-                repos
-                    .filter(repo => specificRepos.includes(repo.name))
-                    .forEach(repo => {
-                        const repoDiv = document.createElement('div');
-                        repoDiv.className = 'repo';
-                        repoDiv.innerHTML = `
-                            <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-                            <p>${repo.description ? repo.description : 'No description available'}</p>
-                            <p><strong>Stars:</strong> ${repo.stargazers_count} | <strong>Forks:</strong> ${repo.forks_count}</p>
-                        `;
-                        repoContainer.appendChild(repoDiv);
-                    });
+
+                // Filter and sort the repositories based on specificRepos order
+                const sortedRepos = specificRepos.map(name => 
+                    repos.find(repo => repo.name === name)
+                ).filter(repo => repo !== undefined);
+
+                sortedRepos.forEach(repo => {
+                    const repoDiv = document.createElement('div');
+                    repoDiv.className = 'repo';
+                    repoDiv.innerHTML = `
+                        <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                        <p>${repo.description ? repo.description : 'No description available'}</p>
+                        <p><strong>Stars:</strong> ${repo.stargazers_count} | <strong>Forks:</strong> ${repo.forks_count}</p>
+                    `;
+                    repoContainer.appendChild(repoDiv);
+                });
             })
             .catch(error => console.error('Error fetching repositories:', error));
     </script>
